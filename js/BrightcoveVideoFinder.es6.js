@@ -1,4 +1,4 @@
-class BrightcoveVideoIdFinder {
+class BrightcoveVideoFinder {
     constructor() {
         this.body = document.getElementsByTagName('body')[0],
         this.injectedStyle = document.getElementById('brightcove_video_id_finder_style'),
@@ -23,7 +23,7 @@ class BrightcoveVideoIdFinder {
         this.injectedStyle = undefined;
     }
 
-    addVideoIdsInfo() {
+    addVideosInfo() {
         const videos = document.querySelectorAll('video[data-video-id]');
         
         videos.forEach( video => {
@@ -35,7 +35,7 @@ class BrightcoveVideoIdFinder {
         });
     }
 
-    removeVideoIdsInfo() {
+    removeVideosInfo() {
         this.videoIdsInfo.forEach( info => {
             info.parentNode.removeChild(info);
         })
@@ -47,17 +47,17 @@ class BrightcoveVideoIdFinder {
 
     run() {
         if(this.inPage()) {
-            this.removeVideoIdsInfo();
+            this.removeVideosInfo();
             this.removeStyles();
             
             return;
         }
 
         this.injectStyles();
-        this.addVideoIdsInfo();
+        this.addVideosInfo();
     }
 }
 
-var finder = new BrightcoveVideoIdFinder();
+var finder = new BrightcoveVideoFinder();
 
 finder.run();

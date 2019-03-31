@@ -1,8 +1,8 @@
 {
-  "name": "Brightcove Video Id Finder",
-  "version": "1.1",
+  "name": "Brightcove Video Finder",
+  "version": "1.2.1",
   "author": "Alessandro Garzaro <garzaro.alessandro@gmail.com",
-  "description": "Expose the id of the brightcove videos present in the page",
+  "description": "Expose the infos of the brightcove videos present in the page",
   "manifest_version": 2,
   "background": {
     "scripts": ["js/background.js"],
@@ -16,7 +16,7 @@
       "48": "images/logo_48.png",
       "128": "images/logo_128.png"
     },
-    "default_title": "Brightcove Video Id Finder\r\nClick to show/hide ids"
+    "default_title": "Brightcove Video Finder\r\nClick to show/hide infos"
   },
   "icons": {
     "16": "images/logo_16.png",
