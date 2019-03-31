@@ -10,7 +10,34 @@ var BrightcoveIdDetector = {
         
         this.injectedStyle = document.createElement('style');
         this.injectedStyle.id = 'brightcove_video_id_finder_style';
-        this.injectedStyle.textContent = `.brigthcove_video_id_info {position: absolute; top: 0; z-index: 999999999; color: black; background: #fff; padding: 5px; text-transform: none; font-family: monospace; font-size: 15px; padding: 20px 10px; user-select: text}`;
+        this.injectedStyle.textContent = `
+            .brigthcove_video_id_info {
+                position: absolute;
+                top: 2px;
+                left: 1px;
+                z-index: 999999999;
+                color: black;
+                background: #fff;
+                text-align: left;
+                text-transform: none;
+                font-size: 13px;
+                padding: 10px;
+                user-select: text;
+            }
+            .brigthcove_video_id_info section {
+                display: block;
+                height: 20px;
+                display: flex;
+                align-items: center;
+            }
+            .brigthcove_video_id_info a {
+                text-decoration: underline;
+                color: #0000EE;
+            }
+            .brigthcove_video_id_info img {
+                margin-left: 5px
+            }
+        `;
 
         this.body.appendChild(this.injectedStyle);
     },
@@ -27,7 +54,19 @@ var BrightcoveIdDetector = {
         videos.forEach( video => {
             const videoIdInfo = document.createElement('div');
             videoIdInfo.classList.add('brigthcove_video_id_info');
-            videoIdInfo.innerHTML = `<b>Video Id:</b> ${video.dataset.videoId}`;
+            videoIdInfo.innerHTML =  `
+                <section>
+                    <strong>Id:</strong> ${video.dataset.videoId}
+                </section>
+                <section>
+                    <a href="${video.getAttribute('poster')}" target="_blank">poster image</a>
+                    <img src="${chrome.extension.getURL('icons/external-link.svg')}" width="10" height="10" />
+                </section>
+                <section>
+                    <a href="${video.src}" target="_blank">video source</a>
+                    <img src="${chrome.extension.getURL('icons/external-link.svg')}" width="10" height="10" />
+                </section>
+            `;
 
             video.parentNode.appendChild(videoIdInfo);
         });
